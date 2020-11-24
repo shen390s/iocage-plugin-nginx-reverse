@@ -12,7 +12,7 @@ get_server_conf() {
    _name="$1"
    _conf="$2"
 
-   _z1=`echo $_name $_conf | sed 's/ //g'`
+   _z1=`echo $_name _$_conf | sed 's/ //g'`
    _z2="echo \$$_z1"
    _val=`eval $_z2`
    echo $_val
