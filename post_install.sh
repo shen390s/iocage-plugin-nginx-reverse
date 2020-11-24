@@ -20,7 +20,7 @@ get_server_conf() {
 mk_server() {
    _name="$1"
    _port=$LISTEN_PORT
-   _server_name=`get_server_conf $_name name`
+   _server_name=`get_server_conf $_name name`.`my-domain`
    _server_url=`get_server_conf $_name url`
 
    _cmd="sed -e 's/%%PORT%%/$_port/g' "
