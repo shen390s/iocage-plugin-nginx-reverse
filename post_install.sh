@@ -25,7 +25,7 @@ mk_server() {
 
    _cmd="sed -e 's/%%PORT%%/$_port/g' "
    _cmd="$_cmd -e 's/%%SERVER_NAME%%/$_server_name/g'"
-   _cmd="$_cmd -e 's/%%URL%%/$_server_url/g'
+   _cmd="$_cmd -e 's/%%URL%%/$_server_url/g' "
 
    cat /usr/local/etc/nginx/conf.d/server.conf.template | \
        eval "$_cmd" >/usr/local/etc/nginx/conf.d/$_name.conf       
