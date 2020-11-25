@@ -12,7 +12,7 @@ get_server_conf() {
    _name="$1"
    _conf="$2"
 
-   _z1=`echo $_name _$_conf | sed 's/ //g'`
+   _z1=`echo $_name $_conf | sed 's/ /_/g'`
    _z2="echo \$$_z1"
    _val=`eval $_z2`
    echo $_val
@@ -32,6 +32,18 @@ mk_server() {
        eval "$_cmd" >/usr/local/etc/nginx/conf.d/$_name.conf       
 }
 
+mk_auth() {
+    _auth_file="/usr/local/etc/nginx/htpasswd"
+    touch $_auth_file
+
+    for _user in $proxy_users; do
+	_z1=`echo $_user passwd|sed 's/ /_/g'`
+	_z2="echo \$$_z1"
+	_passwd=`eval $_z2`
+	/usr/local/bin/htpasswd.py -b $_auth_file "$_user" "$_passwd"
+    done
+}
+
 MY_FQDN="`hostname`.`my-domain`"
 
 # Enable the service
@@ -40,6 +52,8 @@ sysrc -f /etc/rc.conf nginx_enable="YES"
 if [ -f /root/servers.conf ]; then
    . /root/servers.conf
 fi
+
+mk_auth
 
 for _server in $SERVERS; do
     mk_server $_server

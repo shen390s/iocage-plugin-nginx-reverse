@@ -2,6 +2,8 @@ server {
     listen %%PORT%%;
     server_name %%SERVER_NAME%%;
 
+    auth_basic "authentication of sensitive area";
+    auth_basic_user_file htpasswd;
     location / {
        proxy_pass %%URL%%;
     }
