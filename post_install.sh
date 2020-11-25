@@ -59,4 +59,4 @@ for _server in $SERVERS; do
     mk_server $_server
 done
 
-# service nginx start
+service nginx start
