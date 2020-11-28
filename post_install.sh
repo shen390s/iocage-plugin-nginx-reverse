@@ -59,4 +59,7 @@ for _server in $SERVERS; do
     mk_server $_server
 done
 
+# install cert
+gzip -dc letsencrypt.tar.gz | (cd /usr/local/etc && tar xvf -)
+
 # service nginx start
