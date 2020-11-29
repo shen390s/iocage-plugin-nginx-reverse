@@ -62,4 +62,4 @@ done
 # install cert
 gzip -dc letsencrypt.tar.gz | (cd /usr/local/etc && tar xvf -)
 
-# service nginx start
+service nginx start
