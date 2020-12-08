@@ -10,8 +10,6 @@ server {
     ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
     ssl_prefer_server_ciphers on;
 
-    auth_basic "authentication of %%SERVER_NAME%%";
-    auth_basic_user_file htpasswd;
     location / {
        proxy_pass %%URL%%;
     }
